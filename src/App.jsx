@@ -145,6 +145,28 @@ button,input,select,textarea{font-family:inherit;font-size:inherit;}
 .feature h4{font-size:1.05rem;margin-bottom:4px;}
 .feature p{font-size:.85rem;color:var(--muted);line-height:1.6;}
 
+/* ---------- Experience ---------- */
+.experience{background:linear-gradient(180deg, rgba(27,24,21,.7), rgba(13,12,10,.95));}
+.experience-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:52px;}
+.experience-card{background:var(--card);border:1px solid var(--line);padding:32px 28px;border-radius:3px;position:relative;overflow:hidden;transition:.35s ease;}
+.experience-card:hover{transform:translateY(-8px);border-color:rgba(200,164,92,.48);box-shadow:0 20px 32px rgba(0,0,0,.22);}
+.experience-card .icon{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:rgba(200,164,92,.12);color:var(--gold);font-size:1.3rem;margin-bottom:22px;border:1px solid rgba(200,164,92,.35);}
+.experience-card h3{font-size:1.8rem;margin-bottom:12px;}
+.experience-card p{color:var(--muted);line-height:1.75;font-size:.92rem;}
+
+/* ---------- Event Banner ---------- */
+.event-banner{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;padding:52px 46px;background:linear-gradient(135deg, rgba(200,164,92,.14), rgba(200,164,92,.03));border:1px solid var(--line);border-radius:3px;}
+.event-copy h2{font-size:clamp(2.1rem,4vw,3rem);margin-bottom:16px;}
+.event-copy p{color:var(--muted);line-height:1.8;max-width:58ch;}
+.event-points{list-style:none;display:grid;gap:14px;margin-top:24px;}
+.event-points li{display:flex;gap:12px;align-items:flex-start;color:var(--cream);font-size:.96rem;}
+.event-points li::before{content:'✦';color:var(--gold);font-size:1rem;line-height:1.8;}
+.event-media{position:relative;min-height:310px;}
+.event-media img{width:100%;height:100%;object-fit:cover;border-radius:3px;box-shadow:0 30px 60px rgba(0,0,0,.35);}
+.event-badge{position:absolute;left:22px;bottom:22px;background:#141210;border:1px solid var(--line);padding:16px 18px;}
+.event-badge strong{display:block;font-size:1.7rem;font-family:'Cormorant Garamond',serif;color:var(--gold);} 
+.event-badge span{font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);} 
+
 /* ---------- Menu ---------- */
 .menu{background:var(--bg2);border-block:1px solid var(--line);}
 .tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:44px 0 60px;}
@@ -307,9 +329,24 @@ button,input,select,textarea{font-family:inherit;font-size:inherit;}
 const NAV_LINKS = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
+  { label: "Experience", href: "#experience" },
   { label: "Menu", href: "#menu" },
   { label: "Gallery", href: "#gallery" },
+  { label: "Events", href: "#events" },
   { label: "Contact", href: "#contact" },
+];
+
+const EXPERIENCE_ITEMS = [
+  { icon: "✦", title: "Chef's Counter", text: "A front-row seat to the kitchen where every course is plated and explained by the team." },
+  { icon: "❖", title: "Wine Pairing", text: "Bespoke pairings from our cellar, chosen to elevate each seasonal dish and mood of the evening." },
+  { icon: "♫", title: "Live Nights", text: "Soft jazz, acoustic sets, and intimate tasting events designed for memorable evenings." },
+];
+
+const EVENT_ITEMS = [
+  "Private dining for indulgent dinners and celebrations",
+  "Chef-led tasting menus for groups up to 18 guests",
+  "Corkage-friendly wine evenings with bespoke pairings",
+  "Curated cocktail receptions with custom menus",
 ];
 
 const MENU = {
@@ -554,6 +591,63 @@ export default function App() {
                   <h4>Private Events</h4>
                   <p>Intimate dining rooms for 10–60 guests, fully catered.</p>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= EXPERIENCE ================= */}
+      <section className="section experience" id="experience">
+        <div className="wrap">
+          <div className="center reveal">
+            <p className="eyebrow">The Experience</p>
+            <h2 className="title">More Than A Meal</h2>
+            <p className="lead">
+              Every evening at SAVOR is shaped around good company, thoughtful service,
+              and a sense of occasion that lingers well after dessert.
+            </p>
+          </div>
+
+          <div className="experience-grid">
+            {EXPERIENCE_ITEMS.map((item) => (
+              <article className="experience-card reveal" key={item.title}>
+                <div className="icon">{item.icon}</div>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ================= EVENTS ================= */}
+      <section className="section" id="events">
+        <div className="wrap">
+          <div className="event-banner reveal">
+            <div className="event-copy">
+              <p className="eyebrow">Private Dining</p>
+              <h2>Host an evening your guests will talk about.</h2>
+              <p>
+                From intimate birthdays to business dinners and celebratory receptions,
+                our team crafts bespoke hospitality, thoughtful menus and a setting that feels effortlessly elevated.
+              </p>
+              <ul className="event-points">
+                {EVENT_ITEMS.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="event-media">
+              <img
+                src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=900&q=80"
+                alt="Private dining setup"
+                loading="lazy"
+              />
+              <div className="event-badge">
+                <strong>12+</strong>
+                <span>Event Themes</span>
               </div>
             </div>
           </div>
